@@ -12,6 +12,6 @@ public class Main {
         Graph g = new Graph();
         g = new Graph();
         g = Graph.genNetwork(10, 500);
-         Graph.bronKerbosch_cliques(g);
+        Graph.bronKerbosch_cliques(g);
     }
 }
