@@ -1,6 +1,4 @@
-package com.company;
-
-import com.sun.source.tree.WhileLoopTree;
+package Old;
 
 import java.util.*;
 
@@ -42,11 +40,6 @@ public class RandomGraph {
             case 1:
                 System.out.println("Please give total number of member");
                 numberOfMembers = scanner.nextInt();// Set a maximum limit size of users (vertices)
-                maxEdges = (numberOfMembers*(numberOfMembers-1))/2;
-                store = new int[numberOfMembers];
-                graph = new int [numberOfMembers][numberOfMembers];
-                d = new int[numberOfMembers];
-                n=numberOfMembers;
                 // Start time of execution
                 startTime = System.nanoTime();
                 RandomGraph randomGraph = new RandomGraph(numberOfMembers);
@@ -56,8 +49,13 @@ public class RandomGraph {
                 System.out.println("-----" + (endTime - startTime) + " nano second !");
                 break;
             case 2:
-//                int[][] myEdges = edgePairGraph(randomGraph);
-//                generateClique(myEdges,numberOfMembers);
+//                maxEdges = (numberOfMembers*(numberOfMembers-1))/2;
+//                store = new int[numberOfMembers];
+//                graph = new int [numberOfMembers][numberOfMembers];
+//                d = new int[numberOfMembers];
+//                n=numberOfMembers;
+////                int[][] myEdges = edgePairGraph(randomGraph);
+////                generateClique(myEdges,numberOfMembers);
                 System.out.println("Please give number of members");
                 numberOfMembers = scanner.nextInt();// Set a maximum limit size of users (vertices)
                 maxEdges = (numberOfMembers*(numberOfMembers-1))/2;
@@ -81,7 +79,6 @@ public class RandomGraph {
                     else
                         break;
                 }
-
                 System.out.println("Generating a social network that has at least " + numberOfClique + " communities and ");
                 break;
             case 3:
