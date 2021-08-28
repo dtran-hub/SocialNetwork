@@ -15,6 +15,14 @@ public class Graph {
 
     private static Random rand = new Random();
 
+    public List<List<Edge>> getEdges() {
+        return edges;
+    }
+
+    public List<Vertex> getVertices() {
+        return vertices;
+    }
+
     public Graph() {
         edges = new ArrayList<>();
         vertices = new ArrayList<>();
@@ -30,7 +38,6 @@ public class Graph {
                 return; // already has an edge, return
             }
         }
-
         edges.get(from.id()).add(new Edge(from, to, weight));
         edges.get(to.id()).add(new Edge(to, from, weight));
     }
@@ -46,6 +53,7 @@ public class Graph {
             }
         }
     }
+
 
     public static Graph genRandomNetwork(int nUsers, int nFriends) {
         nFriends = Math.min(nUsers - 1, nFriends);
@@ -108,5 +116,18 @@ public class Graph {
 
         System.out.println("  -> Add more links takes: " + (Instant.now().toEpochMilli() - curTime) + " ms");
         return g;
+    }
+
+    public List<List<Edge>> addPairEdge() {
+        for (List<Edge> vList : edges) {
+            if (vList.size() > 0) {
+                System.out.print("" + vList.get(0).from().id());
+                for (Edge edge : vList) {
+                    System.out.print(String.format(" (%d, %d, %.0f)", edge.from().id(), edge.to().id(), edge.weight()));
+                }
+                System.out.println();
+            }
+        }
+        return edges;
     }
 }

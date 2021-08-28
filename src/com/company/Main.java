@@ -1,6 +1,8 @@
 package com.company;
 
 import java.util.*;
+
+import user.Clique;
 import user.Graph;
 
 import javax.swing.*;
@@ -33,13 +35,13 @@ public class Main {
             switch (chosen) {
                 case 1:
                     System.out.print("Please give total number of member : ");
-                    numberOfMembers = scanner.nextInt();// Set a maximum limit size of users (vertices)
+                    numberOfMembers = scanner.nextInt();
                     System.out.println();
                     System.out.print("Please give total number of required friends : ");
-                    numberOfFriends = scanner.nextInt();// Set a maximum limit size of users (vertices)
+                    numberOfFriends = scanner.nextInt();
                     // Start time of execution
                     startTime = System.nanoTime();
-                    Graph.genRandomNetwork(numberOfMembers, numberOfFriends);
+                    myGraph=Graph.genRandomNetwork(numberOfMembers, numberOfFriends);
                     endTime = System.nanoTime();
                     System.out.println("-----" + (endTime - startTime) + " nano second !");
                     break;
@@ -48,7 +50,7 @@ public class Main {
                     numberOfClique = scanner.nextInt();// Set a maximum limit size of users (vertices)
                     System.out.println();
                     System.out.print("Please give number of user per clique : ");
-                    numberOfMemberPerClique = scanner.nextInt();// Set a maximum limit size of users (vertices)
+                    numberOfMemberPerClique = scanner.nextInt();
                     // Start time of execution
                     startTime = System.nanoTime();
                     Graph.genNetwork(numberOfClique, numberOfMemberPerClique);
@@ -56,7 +58,14 @@ public class Main {
                     System.out.println("-----" + (endTime - startTime) + " nano second !");
                     break;
                 case 3:
-                    System.out.println("3. List all communities. ");
+                    System.out.print("Please give number of each clique : ");
+                    numberOfMemberPerClique = scanner.nextInt();
+                    System.out.println();
+
+                    System.out.println("Listing all communities from the given Graph..... ");
+                    Clique.genClique(myGraph,numberOfMemberPerClique);
+                    System.out.println();
+
                     break;
                 case 4:
                     System.out.println("4. List all communities by using Heuristic algorithm");
