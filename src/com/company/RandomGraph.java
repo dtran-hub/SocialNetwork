@@ -54,10 +54,10 @@ public class RandomGraph {
                 System.out.println("the random graph :");
                 printGraph(randomGraph);
                 System.out.println("-----" + (endTime - startTime) + " nano second !");
-                int[][] myEdges = edgePairGraph(randomGraph);
-                generateClique(myEdges,numberOfMembers);
                 break;
             case 2:
+//                int[][] myEdges = edgePairGraph(randomGraph);
+//                generateClique(myEdges,numberOfMembers);
                 System.out.println("Please give number of members");
                 numberOfMembers = scanner.nextInt();// Set a maximum limit size of users (vertices)
                 maxEdges = (numberOfMembers*(numberOfMembers-1))/2;
