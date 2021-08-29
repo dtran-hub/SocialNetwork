@@ -39,11 +39,11 @@ public class Clique {
             edges=myGraph.getEdges();
             vertex=myGraph.getVertices();
 
-            MAX = (vertex.size() * (vertex.size() - 1)) / 2;
+            MAX = vertex.size() * (vertex.size()-1);
             store = new int[MAX];
             graph = new int [MAX][MAX];
             d = new int[MAX];
-            myEdges = new int[(vertex.size() * (vertex.size() - 1)) / 2][];
+            myEdges = new int[MAX][];
             tmpAdjacencyList = new ArrayList<>(vertex.size());
             for (int i = 0; i < vertex.size(); i++)
                 tmpAdjacencyList.add(new ArrayList<>());
@@ -79,19 +79,18 @@ public class Clique {
         for (m=3;m<=k;m++) {
             findCliques(0, 1, m);
         }
-
             for (int i=0;i<=k;i++){
                 if (tmpCliqueList.get(i).size()>0) {
                     System.out.print("Cliques " + i + " members (" + tmpCliqueList.get(i).size()/i+") : ");
                     for (int j = 0; j < tmpCliqueList.get(i).size(); j=j+i) {
                         for (int l = j; l < j + i; l++)
-                            System.out.print(tmpCliqueList.get(i).get(l) + " ");
-                        System.out.print(" / ");
+//                            System.out.print(tmpCliqueList.get(i).get(l) + " ");
+                            continue;
+//                        System.out.print(" / ");
                     }
                     System.out.println();
                 }
             }
-
     }
     static boolean is_clique(int b)
     {
