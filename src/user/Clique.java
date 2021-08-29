@@ -12,10 +12,13 @@ public class Clique {
 
     private static int []store;
     private static int n;
+    private static int m;
 
     // Graph
     private static int[][] myEdges;
     private static List<List<Integer>> tmpAdjacencyList;
+    private static List<List<Integer>> tmpCliqueList;
+
     private static int [][]graph;
     // Degree of the vertices
     private static int []d;
@@ -25,7 +28,13 @@ public class Clique {
     // vector of vertices in
     private static List<Vertex> vertex;
 
-     public static void genClique (Graph myGraph, int k)
+    private static int count;
+
+    public static List<List<Integer>> getTmpCliqueList() {
+        return tmpCliqueList;
+    }
+
+    public static void genClique (Graph myGraph, int k)
         {
             edges=myGraph.getEdges();
             vertex=myGraph.getVertices();
@@ -36,7 +45,6 @@ public class Clique {
             d = new int[MAX];
             myEdges = new int[(vertex.size() * (vertex.size() - 1)) / 2][];
             tmpAdjacencyList = new ArrayList<>(vertex.size());
-
             for (int i = 0; i < vertex.size(); i++)
                 tmpAdjacencyList.add(new ArrayList<>());
 
@@ -55,6 +63,10 @@ public class Clique {
         int size = myEdges.length;
         n = vertex.size();
 
+        tmpCliqueList=new ArrayList<>(k);
+        for (int i=0;i<=k;i++)
+            tmpCliqueList.add(new ArrayList<>());
+
         for (int i = 0; i < size; i++)
         {
             if (myEdges[i] == null)
@@ -64,11 +76,22 @@ public class Clique {
             d[myEdges[i][0]]++;
             d[myEdges[i][1]]++;
         }
-        for (int i=3;i<=k;i++) {
-            System.out.print("Clique " + i +" users :  ");
-            findCliques(0, 1, i);
-            System.out.println();
+        for (m=3;m<=k;m++) {
+            findCliques(0, 1, m);
         }
+
+            for (int i=0;i<=k;i++){
+                if (tmpCliqueList.get(i).size()>0) {
+                    System.out.print("Cliques " + i + " members (" + tmpCliqueList.get(i).size()/i+") : ");
+                    for (int j = 0; j < tmpCliqueList.get(i).size(); j=j+i) {
+                        for (int l = j; l < j + i; l++)
+                            System.out.print(tmpCliqueList.get(i).get(l) + " ");
+                        System.out.print(" / ");
+                    }
+                    System.out.println();
+                }
+            }
+
     }
     static boolean is_clique(int b)
     {
@@ -83,12 +106,12 @@ public class Clique {
         return true;
     }
     // Function to print the clique
-    static void print(int n)
+    static void addToCliqueArray(int n,int m)
     {
-        for (int i = 1; i < n; i++)
-            System.out.print(store[i] + " ");
-        System.out.print(", ");
-    }
+        for (int i = 1; i < n; i++) {
+            tmpCliqueList.get(m).add(store[i]);
+        }
+     }
     // Function to find all the cliques of size s
     static void findCliques(int i, int l, int s)
     {
@@ -103,8 +126,9 @@ public class Clique {
                     if (l < s)
                         // Recursion to add vertices
                         findCliques(j, l + 1, s);
-                    else
-                        print(l + 1);
+                    else {
+                        addToCliqueArray(l + 1, m);
+                    }
             }
     }
 }

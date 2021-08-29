@@ -1,5 +1,6 @@
 package com.company;
 
+import java.time.Instant;
 import java.util.*;
 
 import user.Clique;
@@ -40,10 +41,9 @@ public class Main {
                     System.out.print("Please give total number of required friends : ");
                     numberOfFriends = scanner.nextInt();
                     // Start time of execution
-                    startTime = System.nanoTime();
+                    startTime = Instant.now().toEpochMilli();
                     myGraph=Graph.genRandomNetwork(numberOfMembers, numberOfFriends);
-                    endTime = System.nanoTime();
-                    System.out.println("-----total process: " + (endTime - startTime) + " ns !");
+                    System.out.println("-----total process: " + (Instant.now().toEpochMilli() - startTime) + " ms !");
                     break;
                 case 2:
                     System.out.print("Please give number of cliques : ");
@@ -52,17 +52,19 @@ public class Main {
                     System.out.print("Please give number user per clique : ");
                     numberOfMemberPerClique = scanner.nextInt();
                     // Start time of execution
-                    startTime = System.nanoTime();
+                    startTime = Instant.now().toEpochMilli();
                     myGraph=Graph.genNetwork(numberOfClique, numberOfMemberPerClique);
                     endTime = System.nanoTime();
-                    System.out.println("-----total process: " + (endTime - startTime) + " nano second !");
+                    System.out.println("-----total process: " + (Instant.now().toEpochMilli() - startTime) + " ms !");
                     break;
                 case 3:
                     System.out.print("Please give maximum member of each clique : ");
                     numberOfMemberPerClique = scanner.nextInt();
                     System.out.println();
                     System.out.println("Listing all communities from the given Graph..... ");
+                    startTime = Instant.now().toEpochMilli();
                     Clique.genClique(myGraph,numberOfMemberPerClique);
+                    System.out.println("List cliques of maximum " + numberOfMemberPerClique + " per each takes : " + (Instant.now().toEpochMilli() - startTime)+ "ms" );
                     System.out.println();
                     break;
                 case 4:
