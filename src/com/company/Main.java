@@ -43,7 +43,7 @@ public class Main {
                     startTime = System.nanoTime();
                     myGraph=Graph.genRandomNetwork(numberOfMembers, numberOfFriends);
                     endTime = System.nanoTime();
-                    System.out.println("-----" + (endTime - startTime) + " nano second !");
+                    System.out.println("-----total process: " + (endTime - startTime) + " ns !");
                     break;
                 case 2:
                     System.out.print("Please give number of cliques : ");
@@ -55,7 +55,7 @@ public class Main {
                     startTime = System.nanoTime();
                     myGraph=Graph.genNetwork(numberOfClique, numberOfMemberPerClique);
                     endTime = System.nanoTime();
-                    System.out.println("-----" + (endTime - startTime) + " nano second !");
+                    System.out.println("-----total process: " + (endTime - startTime) + " nano second !");
                     break;
                 case 3:
                     System.out.print("Please give maximum member of each clique : ");

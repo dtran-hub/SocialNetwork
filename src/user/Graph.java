@@ -59,18 +59,20 @@ public class Graph {
         nFriends = Math.min(nUsers - 1, nFriends);
 
         System.out.println(String.format("genRandomNetwork(nUsers = %d, nFriends = %d)", nUsers, nFriends));
-        long curTime = Instant.now().toEpochMilli();
+//        long curTime = Instant.now().toEpochMilli();
+        long curTime=System.nanoTime();
         Graph g = new Graph();
+
 
         // step 1: create vertices (users)
         IntStream.range(0, nUsers).forEach(i -> {
             g.addVertex(new Vertex(i));
             g.edges.add(new ArrayList<>());
         });
-        System.out.println("  -> Create vertices takes: " + (Instant.now().toEpochMilli() - curTime) + " ms");
-
+        System.out.println("  -> Create vertices takes: " + (System.nanoTime() - curTime) + " ns");
         // step 2: add edges (friends)
-        curTime = Instant.now().toEpochMilli();
+//        curTime = Instant.now().toEpochMilli();
+        curTime=System.nanoTime();
         for (Vertex v : g.vertices) {
             IntStream.range(0, nFriends).forEach(i -> {
                 int idx = rand.nextInt(nUsers);
@@ -80,7 +82,7 @@ public class Graph {
                 g.addEdge(v, g.vertices.get(idx), 1.0);
             });
         }
-        System.out.println("  -> Add edges takes: " + (Instant.now().toEpochMilli() - curTime) + " ms");
+        System.out.println("  -> Add edges takes: " + (System.nanoTime() - curTime) + " ns");
         return g;
     }
 
