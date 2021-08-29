@@ -70,7 +70,6 @@ public class Clique {
             System.out.println();
         }
     }
-
     static boolean is_clique(int b)
     {
         for (int i = 1; i < b; i++)
