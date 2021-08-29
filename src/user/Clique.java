@@ -1,5 +1,6 @@
 package user;
 
+import java.awt.print.Printable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +64,11 @@ public class Clique {
             d[myEdges[i][0]]++;
             d[myEdges[i][1]]++;
         }
-        findCliques(0, 1, k);
+        for (int i=3;i<=k;i++) {
+            System.out.print("Clique " + i +" users :  ");
+            findCliques(0, 1, i);
+            System.out.println();
+        }
     }
 
     static boolean is_clique(int b)

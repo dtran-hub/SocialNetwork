@@ -49,23 +49,21 @@ public class Main {
                     System.out.print("Please give number of cliques : ");
                     numberOfClique = scanner.nextInt();// Set a maximum limit size of users (vertices)
                     System.out.println();
-                    System.out.print("Please give number of user per clique : ");
+                    System.out.print("Please give number user per clique : ");
                     numberOfMemberPerClique = scanner.nextInt();
                     // Start time of execution
                     startTime = System.nanoTime();
-                    Graph.genNetwork(numberOfClique, numberOfMemberPerClique);
+                    myGraph=Graph.genNetwork(numberOfClique, numberOfMemberPerClique);
                     endTime = System.nanoTime();
                     System.out.println("-----" + (endTime - startTime) + " nano second !");
                     break;
                 case 3:
-                    System.out.print("Please give number of each clique : ");
+                    System.out.print("Please give maximum member of each clique : ");
                     numberOfMemberPerClique = scanner.nextInt();
                     System.out.println();
-
                     System.out.println("Listing all communities from the given Graph..... ");
                     Clique.genClique(myGraph,numberOfMemberPerClique);
                     System.out.println();
-
                     break;
                 case 4:
                     System.out.println("4. List all communities by using Heuristic algorithm");
